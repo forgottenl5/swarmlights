@@ -1,0 +1,14 @@
+SwarmLights-1K v2.1 data (SwarmLogic)
+Copyright (c) 2026 forgottenl5
+
+The data (the show archives and baselines_T5.tar, including videos, ground truth, calibration, detections and
+baseline outputs) is licensed under the Creative Commons Attribution-NonCommercial 4.0 International licence
+(CC BY-NC 4.0): https://creativecommons.org/licenses/by-nc/4.0/legalcode
+
+You may share and adapt the data for non-commercial purposes, with credit:
+  "SwarmLights-1K v2.1 (2026), forgottenl5 / SwarmLogic, https://github.com/forgottenl5/swarmlights"
+
+Commercial use, including training or evaluating commercial products, needs a separate licence.
+Open an issue on GitHub to ask.
+
+The data is synthetic and provided as is, without warranty of any kind.

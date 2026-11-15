@@ -1,0 +1,1 @@
+D1 2026-11-13T00:09:06Z: container restart interrupted rendering of n1000_s20 and n1000_s21 (K1 partial). Both restarted from scratch with unchanged frozen code; partial outputs overwritten.
