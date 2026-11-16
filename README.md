@@ -100,6 +100,7 @@ Failed predictions are reported as failures, including:
 - **Code: Apache-2.0** for `score.py` and the two baseline trackers.
 - **Not released:** the SwarmLogic planning engine and show generator. The data was produced with them; the build checks above were run by the author.
 - Cite as: SwarmLights-1K v2.1 (2026), forgottenl5 / SwarmLogic. https://github.com/forgottenl5/swarmlights
+- Technical report: forgottenl5 / SwarmLogic (2026), *SwarmLights-1K: a synthetic benchmark where three cameras lose to one*, Zenodo. https://doi.org/10.5281/zenodo.24294706
 - Questions and results: open an issue on GitHub.
 - Need data for other formations, camera layouts or swarm sizes? Open an issue to ask about custom synthetic data.
 
