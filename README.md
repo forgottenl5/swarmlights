@@ -18,7 +18,7 @@ On all 8 shows, the released 3-camera baselines (T4c, T5) score below the best s
 - Code, scoring and docs: https://github.com/forgottenl5/swarmlights
 - Checksums of every archive: `checksums/ARCHIVES.sha256`
 
-SwarmLights is a synthetic benchmark for tracking every drone in a dense night-time drone light show from three calibrated audience-side cameras. Shows have 500 or 1,000 drones, with exact 3-D ground truth for every drone in every frame. In our (non-exhaustive) search, the densest public drone-tracking dataset we found had about 16 drones per frame.
+SwarmLights is a synthetic benchmark for tracking every drone in a dense night-time drone light show from three calibrated audience-side cameras. Shows have 500 or 1,000 drones, with exact 3-D ground truth for every drone in every frame. In our (non-exhaustive) search, the densest public drone-tracking dataset we found has at most a few dozen drones per frame. Tracking thousands of near-identical points from a few calibrated cameras is, however, well studied in experimental fluid mechanics ([Shake-The-Box](https://archive.pco.de/fileadmin/user_upload/Applications/Shake_the_Box/Daniel_Schanz_Shake_the_box_paper.pdf), Schanz et al.) and in starling-flock tracking ([STARFLAG](https://arxiv.org/abs/0802.1667), [GReTA](https://arxiv.org/abs/1305.1495)). Those methods were built for 80-500 fps scientific cameras; whether they work on 10 fps compressed show video is untested and is the most direct next baseline. (Version 1 of our report missed this literature.)
 
 ## The open problem
 With exact detections, the T5 baseline is near-perfect on every show (airborne IDF1 ≥ 0.995). From the rendered camera images it falls to 0.26–0.53, because neighbouring lights merge into one blob, formations seen edge-on collapse into a few blobs, and the front of a 3-D shape hides the back.
@@ -27,7 +27,7 @@ With exact detections, the T5 baseline is near-perfect on every show (airborne I
 
 Two failure modes are documented (see `docs/`):
 1. **Ghost points:** two cameras' lines of sight through two different drones cross where there is no drone. In regular formations this is common. Third-camera verification of new tracks (baseline T5) removes 48–82 % of false tracks.
-2. **Drones inside merged blobs:** a real drone hidden in a merged blob in one camera cannot be confirmed by three cameras, so it is missed. This is open.
+2. **Drones inside merged blobs:** a real drone hidden in a merged blob in one camera cannot be confirmed by three cameras, so it is missed. Particle tracking (Shake-The-Box) handles a similar problem by subtracting predicted images and searching what remains; untested on this data.
 
 ## What is in it
 8 shows, 8 different choreographies (500 and 1,000 drones, seeds 20–23). One archive per show; inside:
@@ -100,7 +100,7 @@ Failed predictions are reported as failures, including:
 - **Code: Apache-2.0** for `score.py` and the two baseline trackers.
 - **Not released:** the SwarmLogic planning engine and show generator. The data was produced with them; the build checks above were run by the author.
 - Cite as: SwarmLights-1K v2.1 (2026), forgottenl5 / SwarmLogic. https://github.com/forgottenl5/swarmlights
-- Technical report: forgottenl5 / SwarmLogic (2026), *SwarmLights-1K: a synthetic benchmark where three cameras lose to one*, Zenodo. https://doi.org/10.5281/zenodo.24294706
+- Technical report: forgottenl5 / SwarmLogic (2026), *SwarmLights-1K: a synthetic benchmark where three cameras lose to one*, Zenodo. https://doi.org/10.5281/zenodo.24294705
 - Questions and results: open an issue on GitHub.
 - Need data for other formations, camera layouts or swarm sizes? Open an issue to ask about custom synthetic data.
 
