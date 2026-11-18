@@ -18,7 +18,7 @@ On all 8 shows, the released 3-camera baselines (T4c, T5) score below the best s
 - Code, scoring and docs: https://github.com/forgottenl5/swarmlights
 - Checksums of every archive: `checksums/ARCHIVES.sha256`
 
-SwarmLights is a synthetic benchmark for tracking every drone in a dense night-time drone light show from three calibrated audience-side cameras. Shows have 500 or 1,000 drones, with exact 3-D ground truth for every drone in every frame. In our (non-exhaustive) search, the densest public drone-tracking dataset we found has at most a few dozen drones per frame. Tracking thousands of near-identical points from a few calibrated cameras is, however, well studied in experimental fluid mechanics ([Shake-The-Box](https://archive.pco.de/fileadmin/user_upload/Applications/Shake_the_Box/Daniel_Schanz_Shake_the_box_paper.pdf), Schanz et al.) and in starling-flock tracking ([STARFLAG](https://arxiv.org/abs/0802.1667), [GReTA](https://arxiv.org/abs/1305.1495)). Those methods were built for 80-500 fps scientific cameras; whether they work on 10 fps compressed show video is untested and is the most direct next baseline. (Version 1 of our report missed this literature.)
+SwarmLights is a synthetic benchmark for tracking every drone in a dense night-time drone light show from three calibrated audience-side cameras. Shows have 500 or 1,000 drones, with exact 3-D ground truth for every drone in every frame. In our (non-exhaustive) search, the densest public drone-tracking dataset we found has at most a few dozen drones per frame. Tracking thousands of near-identical points from a few calibrated cameras is, however, well studied in experimental fluid mechanics ([Shake-The-Box](https://archive.pco.de/fileadmin/user_upload/Applications/Shake_the_Box/Daniel_Schanz_Shake_the_box_paper.pdf), Schanz et al.) and in starling-flock tracking ([STARFLAG](https://arxiv.org/abs/0802.1667), [GReTA](https://arxiv.org/abs/1305.1495)). Those methods were built for 80-500 fps scientific cameras; whether they work on 10 fps compressed show video is untested and is the most direct next baseline. At these shows' speeds a drone moves at most 0.4 m between frames against 2.12 m spacing, so frame rate alone may not be the obstacle; merged lights and compression probably are. At real-show speed and spacing (up to 10 m/s, 1.4 m) frame rate would matter more. (Version 1 of our report missed this literature.)
 
 ## The open problem
 With exact detections, the T5 baseline is near-perfect on every show (airborne IDF1 ≥ 0.995). From the rendered camera images it falls to 0.26–0.53, because neighbouring lights merge into one blob, formations seen edge-on collapse into a few blobs, and the front of a 3-D shape hides the back.
@@ -46,7 +46,7 @@ Two failure modes are documented (see `docs/`):
 
 `baselines_T5.tar` adds the T5 baseline outputs and scores for all 8 shows. It is a separate archive so the show archives stay byte-identical to their registered fingerprints.
 
-Flight paths are physically valid: speed ≤ 4 m/s, acceleration ≤ 2 m/s², and every pair of drones at least 2.12 m apart in every frame (checked).
+Flight paths stay within these limits (checked): speed ≤ 4 m/s, acceleration ≤ 2 m/s², and every pair of drones at least 2.12 m apart in every frame. Real shows fly closer and faster (see *Limits*).
 
 ## Benchmark and scoring
 Track every airborne drone in 3-D, then run:
@@ -88,6 +88,7 @@ Failed predictions are reported as failures, including:
 
 ## Limits
 - Synthetic: idealised LEDs, one camera layout, exact calibration, no camera shake, weather or lens distortion.
+- Sparser and slower than real shows: a show-drone maker specifies 1.4 m minimum spacing ([DAMODA L3](https://en.dmduav.com/products/l3.html)), an operator reports 2 m ([Sky Elements](https://inflightusa.com/articles/skyelementsdrones)), and show drones are rated up to 10 m/s ([UVify IFO](https://uvify.com/product/ifo)). SwarmLights keeps ≥ 2.12 m and ≤ 4 m/s, so real footage likely has more merged lights than this benchmark.
 - Realism check v1 against two public phone videos (Wikimedia Commons, CC BY / CC BY-SA): dot size and crowding are within the real range; colour, clipping and compression were added in v2.1. This is a weak check with no ground truth.
 - The baselines were developed on separate development shows, not on these 8.
 - Not for safety certification of real shows.
