@@ -46,7 +46,7 @@ Two failure modes are documented (see `docs/`):
 
 `baselines_T5.tar` adds the T5 baseline outputs and scores for all 8 shows. It is a separate archive so the show archives stay byte-identical to their registered fingerprints.
 
-Flight paths stay within these limits (checked): speed ≤ 4 m/s, acceleration ≤ 2 m/s², and every pair of drones at least 2.12 m apart in every frame. Real shows fly closer and faster (see *Limits*).
+Planned flight paths stay within these limits (checked): speed ≤ 4 m/s, acceleration ≤ 2 m/s², and every pair of drones at least 2.12 m apart in every frame. Real shows fly closer and faster (see *Limits*).
 
 ## Benchmark and scoring
 Track every airborne drone in 3-D, then run:
@@ -88,6 +88,7 @@ Failed predictions are reported as failures, including:
 
 ## Limits
 - Synthetic: idealised LEDs, one camera layout, exact calibration, no camera shake, weather or lens distortion.
+- Planned paths only: no wind, GPS error or drone failures are simulated. The spacing and speed checks apply to the plan, not to real flight.
 - Sparser and slower than real shows: a show-drone maker specifies 1.4 m minimum spacing ([DAMODA L3](https://en.dmduav.com/products/l3.html)), an operator reports 2 m ([Sky Elements](https://inflightusa.com/articles/skyelementsdrones)), and show drones are rated up to 10 m/s ([UVify IFO](https://uvify.com/product/ifo)). SwarmLights keeps ≥ 2.12 m and ≤ 4 m/s, so real footage likely has more merged lights than this benchmark.
 - Realism check v1 against two public phone videos (Wikimedia Commons, CC BY / CC BY-SA): dot size and crowding are within the real range; colour, clipping and compression were added in v2.1. This is a weak check with no ground truth.
 - The baselines were developed on separate development shows, not on these 8.
